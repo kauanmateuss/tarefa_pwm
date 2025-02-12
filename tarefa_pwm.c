@@ -19,7 +19,7 @@ void setup_pwm(uint gpio) {
     pwm_init(slice_num, &config, true); // Inicia o PWM
 }
 
-// Função para definir o pulso so motor servo em us
+// Função para definir o pulso do motor servo em us
 void set_servo_pulse(uint gpio, uint pulse_width_us) {
     uint slice_num = pwm_gpio_to_slice_num(gpio);
     
@@ -52,7 +52,7 @@ int main() {
     // Inicializando a porta pwm
     setup_pwm(servo_pin);
     
-    // chamando a primeira routina
+    // chamando a primeira rotina
     routine();
 
     while (true) {
