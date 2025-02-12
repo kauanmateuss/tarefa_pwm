@@ -28,28 +28,34 @@ void set_servo_pulse(uint gpio, uint pulse_width_us) {
     pwm_set_chan_level(slice_num, pwm_gpio_to_channel(gpio), level);
 }
 
+// Função para primeira rotina a ser execultada
+void routine(){
+    // Virando para 180 graus
+    printf("Posição: 180 graus\n");
+    set_servo_pulse(servo_pin, 2400);   // 2400 us
+    sleep_ms(5000);     // delay de 5 segundos
+
+    // virando para 90 graus
+    printf("Posição: 90 graus\n");
+    set_servo_pulse(servo_pin, 1470);   // 1470 us
+    sleep_ms(5000);
+
+    // virando para 0 graus
+    printf("Posição: 0 graus\n");
+    set_servo_pulse(servo_pin, 500);   // 500 us
+    sleep_ms(5000);
+}
+
 int main() {
     stdio_init_all();
 
     // Inicializando a porta pwm
     setup_pwm(servo_pin);
     
+    // chamando a primeira routina
+    routine();
 
     while (true) {
-        // Virando para 180 graus
-        printf("Posição: 180 graus\n");
-        set_servo_pulse(servo_pin, 2400);   // 2400 us
-        sleep_ms(5000);     // delay de 5 segundos
-
-        // virando para 90 graus
-        printf("Posição: 90 graus\n");
-        set_servo_pulse(servo_pin, 1470);   // 1470 us
-        sleep_ms(5000);
-
-        // virando para 0 graus
-        printf("Posição: 0 graus\n");
-        set_servo_pulse(servo_pin, 500);   // 500 us
-        sleep_ms(5000);
 
         // Movimento suave entre 180 e 0
         printf("Movendo de 0 para 180\n");
